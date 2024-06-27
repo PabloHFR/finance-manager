@@ -1,7 +1,5 @@
+import { SignIn } from "@clerk/nextjs";
+
 export default function SignInPage() {
-  return (
-    <div>
-      <div></div>
-    </div>
-  );
+  return <SignIn path="/sign-in" />;
 }
