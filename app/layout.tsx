@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { QueryProvider } from "@/providers/queryProvider";
+
+import "./globals.css";
+
 import { ptBR } from "@clerk/localizations";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,7 +22,10 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={ptBR}>
       <html lang="pt-BR">
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          {/* QueryProvider is a 'use client' component,but, since what's inside it is passed as children, the components don't inherit this and are not made into client components */}
+          <QueryProvider> {children}</QueryProvider>
+        </body>
       </html>
     </ClerkProvider>
   );
