@@ -6,6 +6,7 @@ import { QueryProvider } from "@/providers/queryProvider";
 import "./globals.css";
 
 import { ptBR } from "@clerk/localizations";
+import { SheetProvider } from "@/providers/SheetProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,10 @@ export default function RootLayout({
       <html lang="pt-BR">
         <body className={inter.className}>
           {/* QueryProvider is a 'use client' component,but, since what's inside it is passed as children, the components don't inherit this and are not made into client components */}
-          <QueryProvider> {children}</QueryProvider>
+          <QueryProvider>
+            <SheetProvider />
+            {children}
+          </QueryProvider>
         </body>
       </html>
     </ClerkProvider>
