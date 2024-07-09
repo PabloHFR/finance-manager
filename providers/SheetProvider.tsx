@@ -1,6 +1,6 @@
 "use client";
 
-import { NewAccountSheet } from "@/features/accounts/components/newAccountsSheet";
+import { NewAccountSheet } from "@/features/accounts/components/NewAccountSheet";
 import { useMountedState } from "react-use";
 
 export const SheetProvider = () => {
