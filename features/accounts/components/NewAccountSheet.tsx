@@ -31,7 +31,7 @@ export const NewAccountSheet = () => {
   };
 
   return (
-    <Sheet open={true} onOpenChange={onClose}>
+    <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className="space-y-4">
         <SheetHeader>
           <SheetTitle>Nova Conta</SheetTitle>
