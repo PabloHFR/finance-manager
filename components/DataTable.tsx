@@ -10,6 +10,7 @@ import {
   SortingState,
   ColumnFiltersState,
   getFilteredRowModel,
+  Row,
 } from "@tanstack/react-table";
 
 import {
@@ -23,20 +24,26 @@ import {
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { Input } from "./ui/input";
+import { Trash } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   filterKey: string;
+  onDelete: (rows: Row<TData>[]) => void;
+  disabled?: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   filterKey,
+  disabled,
+  onDelete,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
     data,
@@ -47,14 +54,18 @@ export function DataTable<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnFilters,
+      rowSelection,
     },
   });
 
   return (
     <div>
+      {/* FILTERING INPUT */}
+
       <div className="flex items-center py-4">
         <Input
           placeholder={`Filtrar ${filterKey}`}
@@ -64,7 +75,24 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
+
+        {/* DELETE ROW BUTTON */}
+
+        {table.getFilteredSelectedRowModel().rows.length > 0 && (
+          <Button
+            size="sm"
+            variant="outline"
+            className="ml-auto font-normal text-xs"
+            disabled={disabled}
+          >
+            <Trash className="size-4 mr-2" />
+            Deletar ({table.getFilteredSelectedRowModel().rows.length})
+          </Button>
+        )}
       </div>
+
+      {/* TABLE START*/}
+
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -115,7 +143,21 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+
+      {/* TABLE END */}
+
       <div className="flex items-center justify-end space-x-2 py-4">
+        {/* ROWS SELECTED */}
+
+        <div className="flex-1 text-sm text-muted-foreground">
+          {table.getFilteredSelectedRowModel().rows.length} de{" "}
+          {table.getFilteredRowModel().rows.length} linha
+          {table.getFilteredRowModel().rows.length > 1 ? "s" : ""} selecionada
+          {table.getFilteredSelectedRowModel().rows.length > 1 ? "s" : ""}.
+        </div>
+
+        {/* PAGINATION BUTTONS */}
+
         <Button
           variant="outline"
           size="sm"
