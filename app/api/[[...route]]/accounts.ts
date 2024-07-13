@@ -7,6 +7,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { db } from "@/db/drizzle";
 import { accounts, insertAccountSchema } from "@/db/schema";
 import { z } from "zod";
+import { error } from "console";
 
 const app = new Hono()
   .get("/", clerkMiddleware(), async (c) => {
@@ -26,6 +27,43 @@ const app = new Hono()
 
     return c.json({ data });
   })
+  .get(
+    // Gets account by account id
+    "/:id",
+    zValidator(
+      "param",
+      z.object({
+        id: z.string().optional(),
+      })
+    ),
+    clerkMiddleware(),
+    async (c) => {
+      const auth = getAuth(c);
+      const { id } = c.req.valid("param");
+
+      if (!id) {
+        return c.json({ error: "ID ausente." }, 400);
+      }
+
+      if (!auth?.userId) {
+        return c.json({ error: "Não autorizado." }, 401);
+      }
+
+      const [data] = await db
+        .select({
+          id: accounts.id,
+          name: accounts.name,
+        })
+        .from(accounts)
+        .where(and(eq(accounts.userId, auth.userId), eq(accounts.id, id)));
+
+      if (!data) {
+        return c.json({ error: "Não encontrado" }, 404);
+      }
+
+      return c.json({ data });
+    }
+  )
   .post(
     "/",
     clerkMiddleware(),
