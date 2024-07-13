@@ -15,19 +15,19 @@ const routes = [
     label: "Visão Geral",
   },
   {
-    href: "/transacoes",
+    href: "/transactions",
     label: "Transações",
   },
   {
-    href: "/contas",
+    href: "/accounts",
     label: "Contas",
   },
   {
-    href: "/categorias",
+    href: "/categories",
     label: "Categorias",
   },
   {
-    href: "/configuracoes",
+    href: "/settings",
     label: "Configurações",
   },
 ];
