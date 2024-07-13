@@ -11,6 +11,7 @@ import { z } from "zod";
 import { useCreateAccount } from "../api/useCreateAccount";
 import { useOpenAccount } from "../hooks/useOpenAccount";
 import { useGetAccount } from "../api/useGetAccount";
+import { Loader2 } from "lucide-react";
 
 const formSchema = insertAccountSchema.pick({
   name: true,
@@ -23,6 +24,8 @@ export const EditAccountSheet = () => {
 
   const accountQuery = useGetAccount(id);
   const mutation = useCreateAccount();
+
+  const isLoading = accountQuery.isLoading;
 
   const onSubmit = (values: FormValues) => {
     mutation.mutate(values, {
@@ -44,16 +47,21 @@ export const EditAccountSheet = () => {
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent className="space-y-4">
         <SheetHeader>
-          <SheetTitle>Nova Conta</SheetTitle>
-          <SheetDescription>
-            Crie uma nova conta para acompanhar suas transações
-          </SheetDescription>
+          <SheetTitle>Editar Conta</SheetTitle>
+          <SheetDescription>Edite sua conta</SheetDescription>
         </SheetHeader>
-        <AccountForm
-          onSubmit={onSubmit}
-          disabled={mutation.isPending}
-          defaultValues={defaultValues}
-        />
+        {isLoading ? (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Loader2 className="size-4 text-muted-foreground animate-spin" />
+          </div>
+        ) : (
+          <AccountForm
+            id={id}
+            onSubmit={onSubmit}
+            disabled={mutation.isPending}
+            defaultValues={defaultValues}
+          />
+        )}
       </SheetContent>
     </Sheet>
   );
