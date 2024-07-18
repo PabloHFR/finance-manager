@@ -49,7 +49,8 @@ export default function AccountsPage() {
           <DataTable
             columns={columns}
             data={accounts}
-            filterKey="email"
+            filterKey="name"
+            displayKey="nome"
             onDelete={(row) => {
               const ids = row.map((r) => r.original.id);
               deleteAccounts.mutate({ ids });

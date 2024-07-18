@@ -50,6 +50,7 @@ export default function CategoriesPage() {
             columns={columns}
             data={categories}
             filterKey="name"
+            displayKey="nome"
             onDelete={(row) => {
               const ids = row.map((r) => r.original.id);
               deleteCategories.mutate({ ids });
