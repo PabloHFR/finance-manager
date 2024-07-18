@@ -10,7 +10,7 @@ import { Actions } from "./Actions";
 
 // Gets only the success format because of the 200 code
 export type ResponseType = InferResponseType<
-  typeof client.api.accounts.$get,
+  typeof client.api.categories.$get,
   200
 >["data"][0];
 

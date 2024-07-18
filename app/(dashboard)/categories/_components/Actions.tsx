@@ -7,8 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useDeleteAccount } from "@/features/accounts/api/useDeleteAccount";
-import { useOpenAccount } from "@/features/accounts/hooks/useOpenAccount";
+import { useDeleteCategory } from "@/features/categories/api/useDeleteCategories";
+import { useOpenCategory } from "@/features/categories/hooks/useOpenCategory";
 import { useConfirm } from "@/hooks/useConfirm";
 import { Edit, MoreHorizontal, Trash } from "lucide-react";
 
@@ -22,8 +22,8 @@ export const Actions = ({ id }: Props) => {
     "Você está prestes a deletar essa conta."
   );
 
-  const deleteMutation = useDeleteAccount(id);
-  const { onOpen } = useOpenAccount();
+  const deleteMutation = useDeleteCategory(id);
+  const { onOpen } = useOpenCategory();
 
   const handleDelete = async () => {
     const ok = await confirm();
