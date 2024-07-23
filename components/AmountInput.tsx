@@ -1,7 +1,7 @@
 import CurrencyInput from "react-currency-input-field";
 import { Info, MinusCircle, PlusCircle } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn, parseLocaleNumber } from "@/lib/utils";
 import {
   Tooltip,
   TooltipContent,
@@ -22,14 +22,14 @@ export const AmountInput = ({
   placeholder,
   disabled,
 }: Props) => {
-  const parsedValue = parseFloat(value);
+  const parsedValue = parseLocaleNumber(value);
   const isIncome = parsedValue > 0;
   const isExpense = parsedValue < 0;
 
   const onReverseValue = () => {
     if (!value) return;
 
-    const newValue = parseFloat(value) * -1;
+    const newValue = parseLocaleNumber(value) * -1;
 
     onChange(newValue.toString());
   };
@@ -59,7 +59,7 @@ export const AmountInput = ({
         </Tooltip>
       </TooltipProvider>
       <CurrencyInput
-        prefix="R$ "
+        prefix="R$"
         className="pl-10 flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         placeholder={placeholder}
         value={value}

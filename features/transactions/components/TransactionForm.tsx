@@ -16,6 +16,7 @@ import { Select } from "@/components/Select";
 import { DatePicker } from "@/components/DatePicker";
 import { Textarea } from "@/components/ui/textarea";
 import { AmountInput } from "@/components/AmountInput";
+import { convertAmountToMiliunits, parseLocaleNumber } from "@/lib/utils";
 
 const formSchema = z.object({
   date: z.coerce.date(),
@@ -62,8 +63,10 @@ export const TransactionForm = ({
   });
 
   const handleSubmit = (values: FormValues) => {
-    console.log({ values });
-    // onSubmit(values);
+    const amount = parseLocaleNumber(values.amount);
+    const amountInMiliunits = convertAmountToMiliunits(amount);
+
+    onSubmit({ ...values, amount: amountInMiliunits });
   };
 
   const handleDelete = () => {
@@ -152,9 +155,9 @@ export const TransactionForm = ({
               <FormLabel>Quantia</FormLabel>
               <FormControl>
                 <AmountInput
-                  placeholder="0.00"
-                  disabled={disabled}
                   {...field}
+                  disabled={disabled}
+                  placeholder="0.00"
                 />
               </FormControl>
             </FormItem>
