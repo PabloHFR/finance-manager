@@ -126,6 +126,22 @@ export const TransactionForm = ({
             </FormItem>
           )}
         />
+        <FormField
+          name="payee"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Beneficiário</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="Adicionar beneficiário"
+                  disabled={disabled}
+                  {...field}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
         <Button className="w-full" disabled={disabled}>
           {id ? "Salvar mudanças" : "Criar conta"}
         </Button>
