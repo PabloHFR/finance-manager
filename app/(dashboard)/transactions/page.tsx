@@ -49,7 +49,7 @@ export default function TransactionsPage() {
           </Button>
         </CardHeader>
         <CardContent>
-          {/* <DataTable
+          <DataTable
             columns={columns}
             data={transactions}
             filterKey="name"
@@ -59,7 +59,7 @@ export default function TransactionsPage() {
               deleteTransactions.mutate({ ids });
             }}
             disabled={isDisabled}
-          /> */}
+          />
         </CardContent>
       </Card>
     </div>

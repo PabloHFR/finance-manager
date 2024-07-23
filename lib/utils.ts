@@ -15,7 +15,15 @@ export function convertAmountToMiliunits(amount: number) {
 
 export function parseLocaleNumber(numberString: string) {
   // Replace comma with dot
-  const normalizedString = numberString?.replace(",", ".");
+  const normalizedString = numberString.toString().replace(",", ".");
   // Parse the float value
   return parseFloat(normalizedString);
+}
+
+export function formatCurrency(value: number) {
+  return Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+  }).format(value);
 }
