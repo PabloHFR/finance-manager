@@ -15,7 +15,7 @@ export function convertAmountToMiliunits(amount: number) {
 
 export function parseLocaleNumber(numberString: string) {
   // Replace comma with dot
-  const normalizedString = numberString.toString().replace(",", ".");
+  const normalizedString = numberString?.toString().replace(",", ".");
   // Parse the float value
   return parseFloat(normalizedString);
 }

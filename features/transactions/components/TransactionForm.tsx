@@ -120,7 +120,7 @@ export const TransactionForm = ({
               <FormLabel>Categoria</FormLabel>
               <FormControl>
                 <Select
-                  placeholder="Selecione uma conta"
+                  placeholder="Selecione uma categoria"
                   options={categoryOptions}
                   onCreate={onCreateCategory}
                   value={field.value}
@@ -182,7 +182,7 @@ export const TransactionForm = ({
         />
 
         <Button className="w-full" disabled={disabled}>
-          {id ? "Salvar mudanças" : "Criar conta"}
+          {id ? "Salvar mudanças" : "Criar transação"}
         </Button>
         {!!id && (
           <Button
@@ -193,7 +193,7 @@ export const TransactionForm = ({
             variant="outline"
           >
             <Trash className="size-4 mr-2" />
-            Deletar conta
+            Deletar transação
           </Button>
         )}
       </form>
