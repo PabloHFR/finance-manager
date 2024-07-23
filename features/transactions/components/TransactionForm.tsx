@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Select } from "@/components/Select";
 import { DatePicker } from "@/components/DatePicker";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   date: z.coerce.date(),
@@ -137,6 +138,23 @@ export const TransactionForm = ({
                   placeholder="Adicionar beneficiário"
                   disabled={disabled}
                   {...field}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          name="notes"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Notas</FormLabel>
+              <FormControl>
+                <Textarea
+                  {...field}
+                  value={field.value ?? ""}
+                  placeholder="Notas opcionais"
+                  disabled={disabled}
                 />
               </FormControl>
             </FormItem>
