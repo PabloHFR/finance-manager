@@ -11,6 +11,7 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { formatCurrency, parseLocaleNumber } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import { AccountColumn } from "./AccountColumn";
 
 // Gets only the success format because of the 200 code
 export type ResponseType = InferResponseType<
@@ -129,7 +130,12 @@ export const columns: ColumnDef<ResponseType>[] = [
       );
     },
     cell: ({ row }) => {
-      return <span>{row.original.account}</span>;
+      return (
+        <AccountColumn
+          account={row.original.account}
+          accountId={row.original.accountId}
+        />
+      );
     },
   },
   {
