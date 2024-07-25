@@ -52,8 +52,8 @@ export default function TransactionsPage() {
           <DataTable
             columns={columns}
             data={transactions}
-            filterKey="name"
-            displayKey="nome"
+            filterKey="payee"
+            displayKey="beneficiário"
             onDelete={(row) => {
               const ids = row.map((r) => r.original.id);
               deleteTransactions.mutate({ ids });
