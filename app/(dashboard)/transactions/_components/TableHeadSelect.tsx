@@ -13,7 +13,11 @@ type Props = {
   onChange: (columnIndex: number, value: string | null) => void;
 };
 
-const options = ["amount", "payee", "notes", "date"];
+const options = [
+  { label: "quantia", value: "amount" },
+  { label: "beneficiário", value: "payee" },
+  { label: "data", value: "date" },
+];
 
 export const TableHeadSelect = ({
   columnIndex,
@@ -40,17 +44,17 @@ export const TableHeadSelect = ({
         {options.map((option, index) => {
           // Is disabled if user has already selected the option in another table select component
           const disabled =
-            Object.values(selectedColumns).includes(option) &&
-            selectedColumns[`column_${columnIndex}`] !== option;
+            Object.values(selectedColumns).includes(option.value) &&
+            selectedColumns[`column_${columnIndex}`] !== option.value;
 
           return (
             <SelectItem
               key={index}
-              value={option}
+              value={option.value}
               disabled={disabled}
               className="capitalize"
             >
-              {option}
+              {option.label}
             </SelectItem>
           );
         })}
