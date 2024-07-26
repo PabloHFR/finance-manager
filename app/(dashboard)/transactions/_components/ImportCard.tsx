@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
+import { ImportTable } from "./ImportTable";
 
 const dateFormat = "yyyy-MM-dd HH:mm:ss";
 const outputFormat = "yyyy-MM-dd";
@@ -38,7 +39,14 @@ export const ImportCard = ({ data, onCancel, onSubmit }: Props) => {
             </Button>
           </div>
         </CardHeader>
-        <CardContent>Hello</CardContent>
+        <CardContent>
+          <ImportTable
+            headers={headers}
+            body={body}
+            selectedColumns={selectedColumns}
+            onTableHeadSelectChange={() => {}}
+          />
+        </CardContent>
       </Card>
     </div>
   );
