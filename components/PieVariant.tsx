@@ -1,5 +1,13 @@
 import { formatPercentage } from "@/lib/utils";
-import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from "recharts";
+import {
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
+import { CategoryTooltip } from "./CategoryTooltip";
 
 const COLORS = ["#0062FF", "#12C6FF", "#FF647F", "#FF9354"];
 
@@ -45,6 +53,7 @@ export const PieVariant = ({ data }: Props) => {
             );
           }}
         />
+        <Tooltip content={<CategoryTooltip />} />
         <Pie
           data={data}
           cx="50%"
