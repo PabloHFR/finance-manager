@@ -1,8 +1,5 @@
-import { FileSearch, PieChart, Target } from "lucide-react";
+import { FileSearch, PieChart, Radar, Target } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { AreaVariant } from "./AreaVariant";
-import { BarVariant } from "./BarVariant";
-import { LineVariant } from "./LineVariant";
 import { useState } from "react";
 import {
   Select,
@@ -11,8 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { RadarChart } from "recharts";
 import { PieVariant } from "./PieVariant";
+import { RadarVariant } from "./RadarVariant";
+import { RadialVariant } from "./RadialVariant";
 
 type Props = {
   data?: {
@@ -45,7 +43,7 @@ export const SpendingPie = ({ data = [] }: Props) => {
             </SelectItem>
             <SelectItem value="radar">
               <div className="flex items-center">
-                <RadarChart className="size-4 mr-2 shrink-0" />
+                <Radar className="size-4 mr-2 shrink-0" />
                 <p className="line-clamp-1">Radar</p>
               </div>
             </SelectItem>
@@ -70,9 +68,9 @@ export const SpendingPie = ({ data = [] }: Props) => {
           <>
             {chartType === "pie" && <PieVariant data={data} />}
 
-            {chartType === "radar" && <PieVariant data={data} />}
+            {chartType === "radar" && <RadarVariant data={data} />}
 
-            {chartType === "radial" && <PieVariant data={data} />}
+            {chartType === "radial" && <RadialVariant data={data} />}
           </>
         )}
       </CardContent>
