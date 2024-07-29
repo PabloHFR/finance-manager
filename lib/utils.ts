@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
-import { eachDayOfInterval, isSameDay } from "date-fns";
+import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -70,4 +71,47 @@ export function fillMissingDays(
   });
 
   return transactionsByDay;
+}
+
+type Period = {
+  from: string | Date | undefined;
+  to: string | Date | undefined;
+};
+
+export function formatDateRange(period?: Period) {
+  const defaultTo = new Date();
+  const defaultFrom = subDays(defaultTo, 30);
+
+  if (!period?.from) {
+    return `${format(defaultFrom, "LLLL dd", { locale: ptBR })} - ${format(
+      defaultTo,
+      "LLLL dd, y",
+      { locale: ptBR }
+    )}`;
+  }
+
+  if (period.to) {
+    return `${format(period.from, "LLLL dd", { locale: ptBR })} - ${format(
+      period.to,
+      "LLLL dd, y",
+      { locale: ptBR }
+    )}`;
+  }
+
+  return format(period.from, "LLLL dd, y", { locale: ptBR });
+}
+
+export function formatPercentage(
+  value: number,
+  options: { addPrefix?: boolean } = { addPrefix: false }
+) {
+  const result = new Intl.NumberFormat("pt-BR", {
+    style: "percent",
+  }).format(value / 100);
+
+  if (options.addPrefix && value > 0) {
+    return `+${result}`;
+  }
+
+  return result;
 }

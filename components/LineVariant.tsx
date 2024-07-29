@@ -1,0 +1,52 @@
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import {
+  Line,
+  LineChart,
+  CartesianGrid,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+} from "recharts";
+import { CustomTooltip } from "./CustomTooltip";
+
+type Props = {
+  data: {
+    date: string;
+    income: number;
+    expenses: number;
+  }[];
+};
+
+export const LineVariant = ({ data }: Props) => {
+  return (
+    <ResponsiveContainer width="100%" height={350}>
+      <LineChart data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis
+          axisLine={false}
+          tickLine={false}
+          dataKey="date"
+          tickFormatter={(value) => format(value, "dd MMM", { locale: ptBR })}
+          style={{ fontSize: "12px" }}
+          tickMargin={16}
+        />
+        <Tooltip content={<CustomTooltip />} />
+        <Line
+          dot={false}
+          stroke="#3b82f6"
+          strokeWidth={2}
+          dataKey="income"
+          className="drop-shadow-sm"
+        />
+        <Line
+          dot={false}
+          stroke="#f43f5e"
+          strokeWidth={2}
+          dataKey="expenses"
+          className="drop-shadow-sm"
+        />
+      </LineChart>
+    </ResponsiveContainer>
+  );
+};
