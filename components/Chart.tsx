@@ -1,5 +1,6 @@
 import { FileSearch } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { AreaVariant } from "./AreaVariant";
 
 type Props = {
   data?: {
@@ -24,7 +25,7 @@ export const Chart = ({ data = [] }: Props) => {
             </p>
           </div>
         ) : (
-          <div></div>
+          <AreaVariant data={data} />
         )}
       </CardContent>
     </Card>
