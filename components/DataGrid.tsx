@@ -4,6 +4,7 @@ import { useGetSummary } from "@/features/summary/api/useGetSummary";
 import { formatDateRange } from "@/lib/utils";
 import { useSearchParams } from "next/navigation";
 import { FaPiggyBank } from "react-icons/fa";
+import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 import { DataCard } from "./DataCard";
 
 export const DataGrid = () => {
@@ -22,6 +23,22 @@ export const DataGrid = () => {
         value={data?.remainingAmount}
         percentageChange={data?.remainingChange}
         icon={FaPiggyBank}
+        variant="default"
+        dateRange={dateRangeLabel}
+      />
+      <DataCard
+        title="Renda"
+        value={data?.incomeAmount}
+        percentageChange={data?.incomeChange}
+        icon={FaArrowTrendUp}
+        variant="default"
+        dateRange={dateRangeLabel}
+      />
+      <DataCard
+        title="Despesas"
+        value={data?.expensesAmount}
+        percentageChange={data?.expensesChange}
+        icon={FaArrowTrendDown}
         variant="default"
         dateRange={dateRangeLabel}
       />
