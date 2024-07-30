@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
+import { useSeedScript } from "@/hooks/useSeedScript";
 
 const routes = [
   {
@@ -26,10 +27,6 @@ const routes = [
     href: "/categories",
     label: "Categorias",
   },
-  {
-    href: "/settings",
-    label: "Configurações",
-  },
 ];
 
 export const Navigation = () => {
@@ -42,6 +39,11 @@ export const Navigation = () => {
   const onClick = (href: string) => {
     router.push(href);
     setIsOpen(false);
+  };
+
+  const handleGenerateDummyData = async () => {
+    await useSeedScript();
+    window.location.reload();
   };
 
   if (isMobile) {
@@ -68,6 +70,13 @@ export const Navigation = () => {
                 {route.label}
               </Button>
             ))}
+            <Button
+              onClick={handleGenerateDummyData}
+              variant="ghost"
+              className="w-full justify-start"
+            >
+              Gerar informações para teste
+            </Button>
           </nav>
         </SheetContent>
       </Sheet>
@@ -84,6 +93,14 @@ export const Navigation = () => {
           isActive={pathname === route.href}
         />
       ))}
+      <Button
+        onClick={handleGenerateDummyData}
+        size="sm"
+        variant="ghost"
+        className="w-full lg:w-auto justify-between font-normal hover:bg-white/20 hover:text-white border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none text-white focus:bg-white/30 transition"
+      >
+        Gerar informações para teste
+      </Button>
     </nav>
   );
 };
