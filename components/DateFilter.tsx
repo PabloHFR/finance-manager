@@ -92,7 +92,7 @@ export const DateFilter = () => {
               disabled={!date?.from || !date?.to}
               variant="outline"
             >
-              Reset
+              Restaurar
             </Button>
           </PopoverClose>
           <PopoverClose asChild>
