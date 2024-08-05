@@ -1,5 +1,7 @@
 # Finance Manager
 
+![image](https://github.com/user-attachments/assets/1775b7d8-ea18-4c71-ad4a-93e0512d1fad)
+
 O **Finance Manager** é um aplicativo feito com **_TypeScript_**, **_ReactJS_**, **_NextJS_** e outras tecnologias.
 
 Ele é um abrangente gerenciador financeiro projetado para ajudar os usuários a rastrear e gerenciar suas transações financeiras com facilidade. O aplicativo oferece suporte a vários tipos de Contas e criação de Categorias, permitindo aos usuários organizar suas transações e visualizá-las por meio de diversos gráficos interativos.
@@ -7,6 +9,8 @@ Ele é um abrangente gerenciador financeiro projetado para ajudar os usuários a
 Além disso, o aplicativo possui uma variedade de recursos para aprimorar a experiência do usuário, incluindo filtros personalizáveis, tabelas de transações detalhadas, componentes customizáveis e importação de histórico de transações via arquivos CSV.
 
 Um botão _Gerar informações para teste_ está disponível para gerar informações aleatórias, permitindo visualizar o pleno funcionamento de todas as features do aplicativo.
+
+O projeto pode ser acessado no site **Finance Manager**.
 
 ## Instalação
 
