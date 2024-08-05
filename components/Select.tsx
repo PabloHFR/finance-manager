@@ -48,7 +48,9 @@ export const Select = ({
       onCreateOption={onCreate}
       isDisabled={disabled}
       noOptionsMessage={() => <p>Nenhuma opção encontrada</p>}
-      formatCreateLabel={(inputValue: string) => <p>Criar "{inputValue}"</p>}
+      formatCreateLabel={(inputValue: string) => (
+        <p>Criar &quot;{inputValue}&quot;</p>
+      )}
     />
   );
 };
