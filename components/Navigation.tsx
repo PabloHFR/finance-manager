@@ -8,7 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
-import { useSeedScript } from "@/hooks/useSeedScript";
+import { seedScript } from "@/actions/seedScript";
 
 const routes = [
   {
@@ -42,7 +42,7 @@ export const Navigation = () => {
   };
 
   const handleGenerateDummyData = async () => {
-    await useSeedScript();
+    await seedScript();
     window.location.reload();
   };
 
